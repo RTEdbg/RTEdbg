@@ -1,15 +1,16 @@
 # RTEdbg project to-do list
 
-See if you can contribute to any of the activities listed or suggest new ones.
+See if you can contribute to any of the activities listed or suggest new ones. <br>
+**Note:** This is a global ToDo list for the whole RTEdbg project. See also the local ToDo list for the individual repository you want to contribute to.
 
 ## General to-do list
 - Documentation clarification and improvement.
-- Short version of the RTEdbg manual explaining the basic features.
-- Process automation and continuous integration.
+- A short version of the RTedbg manual with an explanation of the basic functionality, intended for beginners or those who do not need the full functionality.
 - Porting the RTEdbg data acquisition library to other CPU cores and toolchains (writing drivers, tests, demo code, etc.).
 - Testing of full functionality including RTEmsg PC utility for data decoding, sorting and statistics.
 - Demo project improvements and additional demo projects.
 - Development of tools for streaming mode data transfer to the host (see list below).
+- Enhancement of RTEgdbData utility with graphical user interface
 - Enhancements to the RTEmsg binary data decoding application (see list below).
 - Integration with other tools to support testing and debugging.
 - Instructions on how to use trace and log data tools to analyze or verify data obtained from data capture and decoding.
@@ -21,9 +22,7 @@ Existing solutions only allow the transfer of logged binary data from the embedd
 
 Streaming (continuous) data acquisition requires solutions for transferring (or recording) data via, for example:
 - Serial port (e.g. VCP over USB connection)
-- GDB protocol (TCP/IP)
-- General TCP/IP
-- Debug probes such as J-LINK, ST-LINK, etc.
+- TCP/IP
 - SD card
 - USB flash drive
 - CAN bus
@@ -35,5 +34,4 @@ Streaming (continuous) data acquisition requires solutions for transferring (or 
 
 ### **In progress**
 - Instructions for integrating event logging into an RTOS with examples for FreeRTOS.
-- Application for transferring data from an embedded system using the GDB protocol.
 - Translate the source code of the RTEmsg binary decoding application into English and publish it on Github.

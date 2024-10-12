@@ -2,7 +2,7 @@
 
 Thank you for considering contributing. We welcome all types of contributions, including documentation clarifications, code improvements, additional demo code, porting code to new CPU cores, tools for transferring recorded data to the host computer, and new feature suggestions.
 
-See the current **[TO-DO  list](https://github.com/RTEdbg/RTEdbg/blob/master/Docs/TODO.md)**.
+See the current **[TO-DO  list](https://github.com/RTEdbg/RTEdbg/blob/master/docs/TODO.md)**.
 
 ## How can I help?
 If you find a bug or lack of functionality, search for existing issues before submitting a new one. Follow the guidelines in this document.
@@ -39,8 +39,9 @@ Follow the guidelines for [Creating a pull request](https://docs.github.com/en/p
 - After submitting your pull request, make sure it passes all the status checks.
 
 ### What skills do we need most?
-* Porting code to 32-bit processor families. This means writing drivers for new CPU cores and timers, testing, and preparing demo code.
-* Transfer data from the embedded system to the host in real time using common debugger probes or other common communication channels. Streaming from the embedded system to the host requires the highest possible bandwidth to avoid data loss. Windows is not a real-time operating system, and it is difficult to guarantee continuous bandwidth.
+* Testing library code on 32-bit processor families (this includes writing/adapting of timestamp drivers) and preparing demo code. <br> **Note:** If you are in doubt about the correctness of your solution, contact the Field Application Engineer (FAE) of your processor manufacturer or supplier to verify the correctness of the implementation of the new timestamp timer or circular buffer reservation driver.
+* Preparation of a short version of the user manual in an online format - e.g. as a cheat sheet.
+* Writing tools for data transfer from embedded system to the host in real time using common debugger probes or other common communication channels. Streaming from the embedded system to the host requires the highest possible bandwidth to avoid data loss. Windows is not a real-time operating system, and it is difficult to guarantee continuous bandwidth.
 
 ## Coding Style
 
