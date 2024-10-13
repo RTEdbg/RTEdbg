@@ -10,7 +10,7 @@ The RTEdbg library and tools are suitable for both large, hard-real-time RTOS-ba
 
 &Rightarrow; &nbsp; View the **[RTEdbg Presentation](https://github.com/RTEdbg/RTEdbg/releases/download/Documentation/RTEdbg.Presentation.pdf)** to learn about the key benefits and to see the basic features.<br>
 
-### **NewsFlash:** New release cantaining
+### **NewsFlash:** New release containing
 * New RTEgdbData data transfer utility
 * Generic CPU drivers added to allow use on almost any 32-bit device
 * Library and ARM Cortex M CPU driver improvements, etc.
