@@ -11,9 +11,9 @@ The RTEdbg library and tools are suitable for both large, hard-real-time RTOS-ba
 &Rightarrow; &nbsp; View the **[RTEdbg Presentation](https://github.com/RTEdbg/RTEdbg/releases/download/Documentation/RTEdbg.Presentation.pdf)** to learn about the key benefits and to see the basic features.<br>
 
 ### **NewsFlash:** New release containing
-* New RTEgdbData data transfer utility
-* Generic CPU drivers added to allow use on almost any 32-bit device
-* Library and ARM Cortex M CPU driver improvements, etc.
+* Added RTEcomLib repository - functions for log data transfer to host via serial channel.
+* Added RTEcomLib_NUCLEO_C071RB_Demo repository - demo code for the RTEcomLib library.
+* Fixed a bug in the STM32 TIM2 timestamp driver.
 
  View all **[News](https://github.com/RTEdbg/RTEdbg/blob/master/docs/NEWS.md)**.
 
@@ -62,6 +62,9 @@ The code and documentation for the libraries and tools can be found in the follo
 | [**RTElib**](https://github.com/RTEdbg/RTElib) | A re-entrant library of functions for minimally intrusive code instrumentation (data logging and tracing). Functions collect data in a circular buffer in RAM.  | 
 | [**RTEgdbData**](https://github.com/RTEdbg/RTEgdbData) | A tool for transferring binary log data to a host using the GDB server (it is part of the Debug Probe software). Other ways to transfer data to the host are described in the RTEdbg manual. |
 | [**RTEmsg**](https://github.com/RTEdbg/RTEmsg) | Offline binary logged data decoding application that runs on the host. |
+| [**RTEcomLib**](https://github.com/RTEdbg/RTEcomLib) | Functions for log data transfer to host via serial channel. |
+| [**RTEcomLib_NUCLEO_C071RB_Demo**](https://github.com/RTEdbg/RTEcomLib_NUCLEO_C071RB_Demo) | Demo code for the RTEcomLib library running on the STM NUCLEO-C071RB demo board. |
+| [**RTEcomData**](https://github.com/RTEdbg/RTEcomData) | Utility for log data transfer to host via serial channel. |
 | | |
 
 **Note:** Demo code is currently only included in the distribution ZIP files - see  **[Releases](https://github.com/RTEdbg/RTEdbg/releases)**.
@@ -82,6 +85,6 @@ Please use **[RTEdbg.freeforums.net](https://rtedbg.freeforums.net/)** for gener
 When asking a support question, be clear and take the time to explain your problem properly. If your problem is not strictly related to this project, we recommend that you use [Stack Overflow](https://stackoverflow.com/) or similar question-and-answer website instead. First, check if the **[RTEdbg manual](https://github.com/RTEdbg/RTEdbg/releases/download/Documentation/RTEdbg.library.and.tools.manual.pdf)** already contains an answer to your question or a solution to your problem.
 
 ## About the Author
-The author works in real-time control and power electronics design for battery-powered systems. He has been developing his own debugging solutions since learning to program on a Sinclair ZX80. This project is the author's first universal toolkit. Credits go to Stefan Milivojčev, who participated in the development of the RTEmsg format definition parser as part of his master's thesis and helped with the Github workflow.
+The author works in real-time control and power electronics design for battery-powered systems. He has been developing his own debugging solutions since learning to program on a Sinclair ZX80. This project is the author's first universal toolkit. Credits go to Stefan Milivojčev, who participated in the development of the RTEmsg format definition parser as part of his master's thesis and helped with the Github workflows.
 
 English is not the native language of the author. Google Translate and DeepL Write were used to improve the documentation. Thanks in advance for your comments and contributions that will help improve the library, tools, and documentation. This is the author's first open source project published on Github and his contribution to the open source community. Please be patient. The author is working on this project in his spare time.

@@ -1,5 +1,12 @@
 ## **RTEdbg project news**
 
+### 2024-11-17
+* Added RTEcomLib repository - functions for log data transfer to host via serial channel.
+* Added RTEcomLib_NUCLEO_C071RB_Demo repository - demo code for the RTEcomLib library.
+* Added the `rtedbg_generic_atomic_smp.h` buffer space reservation driver
+* Fixed a bug in the STM32 TIM2 timestamp driver.
+* RTEmsg utility: Fixed a bug in the search for the next long timestamp after detecting a probable message dropout.
+
 ### 2024-10-12
 RTEdbg library, tools and demo code version 1.00.01 released.
 * Improved data logging library - see the [Library History](https://github.com/RTEdbg/RTElib/blob/master/History.md). The toolkit can now be used on almost all microcontrollers with 32-bit cores.

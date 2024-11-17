@@ -1,6 +1,6 @@
 # Contribute to the RTEdbg project
 
-Thank you for considering contributing. We welcome all types of contributions, including documentation clarifications, code improvements, additional demo code, porting code to new CPU cores, tools for transferring recorded data to the host computer, and new feature suggestions.
+Thank you for considering contributing. We welcome all types of contributions, including documentation clarifications, code improvements, additional demo code, porting code to new CPU cores, tools for transferring recorded data to the host computer, and new feature suggestions. While contributing do not use slang and rarely used or lesser-known abbreviations or acronyms.
 
 See the current **[TO-DO  list](https://github.com/RTEdbg/RTEdbg/blob/master/docs/TODO.md)**.
 
@@ -33,9 +33,12 @@ Before submitting an enhancement, make sure your idea fits the scope and provide
 
 ### Pull Requests
 
+Search previous suggestions before submitting a new one, as yours may be a duplicate. <br>
 Follow the guidelines for [Creating a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) and try to:
 - Maintain the quality of the project.
 - Add features or fix problems that are important to a wide community of users.
+- Whenever possible and reasonable, consider backward compatibility when adding new features or modifying existing ones.
+- Make sure that the relevant documentation / comments have been changed or added.
 - After submitting your pull request, make sure it passes all the status checks.
 
 ### What skills do we need most?
