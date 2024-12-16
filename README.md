@@ -4,20 +4,20 @@
 
 **The toolkit includes a library of functions for minimally intrusive code instrumentation (data logging/tracing), tools for transferring data to the host, a tool for decoding data on the host, and demo code.
 The solution helps embedded programmers test and debug C/C++ firmware, optimize system performance, reverse engineer poorly documented code, and find hard-to-reproduce problems.**
+
 The RTEdbg library and tools are suitable for both large, hard-real-time RTOS-based systems and small, resource-constrained systems. The tools provide better insight into the operation of real-time systems than traditional debuggers because real-time systems cannot be stopped. Restarting the system changes the conditions, leading to different results. In addition, loss of control can cause damage.
 
 **This is the main repository used to distribute the RTEdbg toolkit only.** See a **[List of repositories](#Repository-Structure)** that are part of the RTEdbg toolkit.
 
-&Rightarrow; &nbsp; View the **[RTEdbg Presentation](https://github.com/RTEdbg/RTEdbg/releases/download/Documentation/RTEdbg.Presentation.pdf)** to learn about the key benefits and to see the basic features.<br>
+View the **[RTEdbg Presentation](https://github.com/RTEdbg/RTEdbg/releases/download/Documentation/RTEdbg.Presentation.pdf)** to learn about the key benefits and to see the basic features.<br>
 
-### **NewsFlash:** New release containing
-* Added RTEcomLib repository - functions for log data transfer to host via serial channel.
-* Added RTEcomLib_NUCLEO_C071RB_Demo repository - demo code for the RTEcomLib library.
-* Fixed a bug in the STM32 TIM2 timestamp driver.
-
- View all **[News](https://github.com/RTEdbg/RTEdbg/blob/master/docs/NEWS.md)**.
-
-<br>
+### **Newsflash** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Rightarrow; See also all **[News](https://github.com/RTEdbg/RTEdbg/blob/master/docs/NEWS.md)**
+* RTEmsg utility source code released and command line argument -ts added
+* Improved RTEdbg library compile time check
+* Added `rtedbg_generic_non_reentrant.h` - buffer space reservation driver
+* Added `rtedbg_zero_timer.h` - timestamp timer driver for projects that do not need timestamps
+* Added `rtedbg_inline.h` - inline versions of data logging functions
+* Updated manual and several Readme files
 
 ## Table of contents:
 * [Introduction](#Introduction)
@@ -31,14 +31,14 @@ The RTEdbg library and tools are suitable for both large, hard-real-time RTOS-ba
 
 ## Introduction
 **The solution was designed with a focus on maximum execution speed, low memory and stack requirements, and portability. It is essentially a reentrant timestamped *fprintf()* function that runs on the host instead of the embedded system.** Flexible filtering and sorting of data into user-defined files helps manage the flood of data from the embedded system.
-The new data logging/tracing solution is not a replacement for existing event-oriented solutions such as SystemView or Tracealyzer, as it is based on a different concept. It is optimized for minimally intrusive logging and flexible data decoding. Flexible decoding (printing) of data enables analysis of log files with existing tools (log viewers, graphing and event analysis tools). The code is optimized for 32-bit devices. For example: Only 35 CPU cycles and 4 bytes of stack are required to log a simple event on a device with a Cortex-M4 core. The total program memory footprint is only about 1 kB (if all functions were used). For the [SystemView](https://www.segger.com/downloads/free-utilities/UM08027) nearly 200 CPU cycles and a maximum of 150 to 510 bytes of stack are required for event generation and encoding.
+The new data logging/tracing solution is not a replacement for existing event-oriented solutions such as SystemView or Tracealyzer, as it is based on a different concept. It is optimized for minimally intrusive logging and flexible data decoding. Flexible decoding (printing) of data enables analysis of log files with existing tools (log viewers, graphing and event analysis tools). The code is optimized for 32-bit devices. For example: Only 35 CPU cycles and 4 bytes of stack are required to log a simple event on a device with a Cortex-M4 core. The total program memory footprint is only about 1 kB (using all functions, not including function calls and function parameter preparation). For the [SystemView](https://www.segger.com/downloads/free-utilities/UM08027) nearly 200 CPU cycles and a maximum of 150 to 510 bytes of stack are required for event generation and encoding. Even faster execution and lower stack usage can be achieved while using the inline versions of the data logging functions at the expense of higher program memory usage - for example, the inline versions can be used in the most time critical parts of the code only.
 
-Code instrumentation is minimally intrusive because raw binary data is logged along with an automatically assigned format definition ID (transparent to the programmer) and timestamp. Raw data logging also minimizes circular buffer requirements. Any data type or entire structures/buffers can be logged and decoded, including bit fields and packed structures. In addition, there is no need for format strings or data formatting/tagging functions in the embedded system. Any debug probe, communication channel, or media can be used to transfer data to the host. Because data is logged in raw binary form, bandwidth requirements are low.
+Code instrumentation is minimally intrusive because raw binary data is logged along with an automatically assigned format definition ID (transparent to the programmer) and timestamp. Raw data logging also minimizes circular buffer requirements. **Any data type or entire structures/buffers can be logged and decoded, including bit fields and packed structures.** In addition, there is no need for format strings or data formatting/tagging functions in the embedded system. **Any debug probe, communication channel, or media can be used to transfer data to the host.** Because data is logged in raw binary form, bandwidth requirements are low. The [**RTEgdbData**](https://github.com/RTEdbg/RTEgdbData) tool for transferring binary log data to a host using the debug probe GDB server is part of the RTEdbg project.
 
-The toolkit can be used for any type of project, including hard real-time or functional safety. Low stack requirements virtually eliminate the possibility of stack overflows after code instrumentation. Data logging functions are reentrant and do not disable interrupts if the microcontroller supports the mutex instructions.
+**The toolkit can be used for any type of project**, from small resource-constrained to large RTOS-based, including hard real-time or functional safety. Low stack requirements virtually eliminate the possibility of stack overflows after existing code instrumentation. Data logging functions are reentrant and do not disable interrupts if the microcontroller supports the exclusive access (mutex) instructions.
 See the [**RTEdbg Toolkit Suitability Guide**](https://github.com/RTEdbg/RTEdbg/blob/master/docs/Toolkit_Suitability_Guide.md) for examples where the toolkit could be used.
 
-Using this library avoids all the problems of printf-style debugging modes. All format strings are stored only on the host computer, where the decoding of the logged data is performed. Since the data is recorded in binary form, the number of functions is very small and it is possible to learn how to use them quickly. Format definitions are printf-style strings, so they are familiar to programmers.
+Using this library avoids all the problems of non-reentrant printf-style debugging modes. All format strings are stored only on the host computer, where the decoding of the logged data is performed. Since the data is recorded in binary form, the number of functions is very small and it is possible to learn how to use them quickly. Format definitions are printf-style strings, so they are familiar to programmers.
 
 ## Getting Started
 Complete documentation can be found in the **[RTEdbg Manual](https://github.com/RTEdbg/RTEdbg/releases/download/Documentation/RTEdbg.library.and.tools.manual.pdf)**. See the **GETTING STARTED GUIDE** section for quick start instructions and **INTRODUCTION AND KEY FEATURES** for a look at the main features and benefits. 

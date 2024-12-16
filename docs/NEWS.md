@@ -1,6 +1,17 @@
 ## **RTEdbg project news**
 
+### 2024-12-09
+RTEdbg library, tools and demo code version 1.00.03 released.
+* RTEmsg utility source code released
+* Improved compile time check
+* Added `rtedbg_generic_non_reentrant.h` buffer space reservation driver
+* Added `rtedbg_zero_timer.h` timestamp timer driver for projects that do not need timestamps
+* Added `rtedbg_inline.h` file with inline versions of data logging functions
+* Updated Readme.md files.
+* RTEmsg command line argument -ts added
+
 ### 2024-11-17
+RTEdbg library, tools and demo code version 1.00.02 released.
 * Added RTEcomLib repository - functions for log data transfer to host via serial channel.
 * Added RTEcomLib_NUCLEO_C071RB_Demo repository - demo code for the RTEcomLib library.
 * Added the `rtedbg_generic_atomic_smp.h` buffer space reservation driver
@@ -13,6 +24,6 @@ RTEdbg library, tools and demo code version 1.00.01 released.
 * New utility for transferring data from the embedded system to the host using Debug Probes GDB server - see the [RTEgdbData utility Readme](https://github.com/RTEdbg/RTEgdbData/blob/master/Readme.md).
 * Improved and supplemented instructions - see the RTEdbg Manual &rarr; section *Revision History*.
 * Improved data decoding utility RTEmsg, etc.
+
 ### 2024-05-11
 * RTEdbg library, tools and demo code version 1.00.00 released.
-<br>
