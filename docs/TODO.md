@@ -1,11 +1,11 @@
-# RTEdbg project to-do list
+# RTEdbg Project To-do List
 
 See if you can contribute to any of the activities listed or suggest new ones. <br>
-**Note:** This is a global ToDo list for the whole RTEdbg project. See also the local ToDo list for the individual repository you want to contribute to.
+**Note:** This is a global To-do list for the whole RTEdbg project. See also the local ToDo list for the individual repository you want to contribute to.
 
 ## General to-do list
 - Documentation clarification and improvement.
-- A short version of the RTedbg manual with an explanation of the basic functionality, intended for beginners or those who do not need the full functionality.
+- A short version of the RTEdbg manual with an explanation of the basic functionality, intended for beginners or those who do not need the full functionality.
 - Porting the RTEdbg data acquisition library to other CPU cores and toolchains (writing drivers, tests, demo code, etc.).
 - Testing of full functionality including RTEmsg PC utility for data decoding, sorting and statistics.
 - Demo project improvements and additional demo projects.
@@ -34,4 +34,5 @@ Streaming (continuous) data acquisition requires solutions for transferring (or 
 
 ### **In progress**
 - Instructions for integrating event logging into an RTOS with examples for FreeRTOS.
-- Translate the source code of the RTEmsg binary decoding application into English and publish it on Github.
+- Utility for transferring logged data to the host via COM port
+- RTEgdbData utility extension to transfer multiple snapshots to host
