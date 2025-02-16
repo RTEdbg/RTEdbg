@@ -1,5 +1,12 @@
 ## **RTEdbg project news**
 
+### 2025-02-16
+RTEdbg library, tools and demo code version 1.01.01 released.
+* Added logging of messages on unlined addresses for processors that do not support unlined addressing in hardware.
+* Added conditional translation option for an even smaller data logging code footprint.
+* Updated RTEgdbData and RTEmsg utilities
+* Updated documentation
+
 ### 2024-12-09
 RTEdbg library, tools and demo code version 1.00.03 released.
 * RTEmsg utility source code released

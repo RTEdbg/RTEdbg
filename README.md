@@ -11,13 +11,11 @@ The RTEdbg library and tools are suitable for both large, hard-real-time RTOS-ba
 
 View the **[RTEdbg Presentation](https://github.com/RTEdbg/RTEdbg/releases/download/Documentation/RTEdbg.Presentation.pdf)** to learn about the key benefits and to see the basic features.<br>
 
-### **Newsflash** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Rightarrow; See also all **[News](https://github.com/RTEdbg/RTEdbg/blob/master/docs/NEWS.md)**
-* RTEmsg utility source code released and command line argument -ts added
-* Improved RTEdbg library compile time check
-* Added `rtedbg_generic_non_reentrant.h` - buffer space reservation driver
-* Added `rtedbg_zero_timer.h` - timestamp timer driver for projects that do not need timestamps
-* Added `rtedbg_inline.h` - inline versions of data logging functions
-* Updated manual and several Readme files
+### **Newsflash** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Rightarrow; See also all **[News](https://github.com/RTEdbg/RTEdbg/blob/master/docs/NEWS.md)**
+* Added logging of messages on unlined addresses for processors that do not support unlined addressing in hardware.
+* Added conditional translation option for an even smaller data logging code footprint.
+* Updated RTEgdbData and RTEmsg utilities
+* Updated documentation
 
 ## Table of contents:
 * [Introduction](#Introduction)
@@ -61,30 +59,43 @@ The code and documentation for the libraries and tools can be found in the follo
 | [**RTEdbg**](https://github.com/RTEdbg/RTEdbg) | Main repository used to distribute the RTEdbg toolkit - see the **[Releases - download page](https://github.com/RTEdbg/RTEdbg/releases)**. This repository does not contain any source code. See other repositories below for library and tool source code. |
 | [**RTElib**](https://github.com/RTEdbg/RTElib) | A re-entrant library of functions for minimally intrusive code instrumentation (data logging and tracing). Functions collect data in a circular buffer in RAM.  | 
 | [**RTEgdbData**](https://github.com/RTEdbg/RTEgdbData) | A tool for transferring binary log data to a host using the GDB server (it is part of the Debug Probe software). Other ways to transfer data to the host are described in the RTEdbg manual. |
-| [**RTEmsg**](https://github.com/RTEdbg/RTEmsg) | Offline binary logged data decoding application that runs on the host. |
+| [**RTEmsg**](https://github.com/RTEdbg/RTEmsg) | Offline binary data decoding application that runs on the host. |
 | [**RTEcomLib**](https://github.com/RTEdbg/RTEcomLib) | Functions for log data transfer to host via serial channel. |
-| [**RTEcomLib_NUCLEO_C071RB_Demo**](https://github.com/RTEdbg/RTEcomLib_NUCLEO_C071RB_Demo) | Demo code for the RTEcomLib library running on the STM NUCLEO-C071RB demo board. |
 | [**RTEcomData**](https://github.com/RTEdbg/RTEcomData) | Utility for log data transfer to host via serial channel. |
 | | |
 
-**Note:** Demo code is currently only included in the distribution ZIP files - see  **[Releases](https://github.com/RTEdbg/RTEdbg/releases)**.
+## Demo Projects
+The code and additional documentation for demo projects and exception handlers can be found in the following repositories.
 
-<br>
+| Repository | Description |
+|:---:|:-----------|
+| **[Simple_STM32H743 demo](https://github.com/RTEdbg/RTEdbgDemo/tree/master/Simple_STM32H743)** | Simplest version of demo code for the NUCLEO-H743ZI/ZI2 (ARM Cortex-M7) - STM32CubeIDE, IAR EWARM, and Keil MDK IDE. <br> This repository was used as a reference to demonstrate which **RTEdbg library** files need to be added to a project and what changes must be made to the project settings. For more details, refer to the project description in the **RTEdbg manual**, section **Simple Demo Project**. |
+| **[STM32H743 demo](https://github.com/RTEdbg/RTEdbgDemo/tree/master/STM32H743)** | Demo code for the NUCLEO-H743ZI/ZI2 (ARM Cortex-M7) - STM32CubeIDE, IAR EWARM, and Keil MDK IDE |
+| **[STM32L433 demo](https://github.com/RTEdbg/RTEdbgDemo/tree/master/STM32L433)** | Demo code for the NUCLEO-L433 (ARM Cortex-M4) - STM32CubeIDE, IAR EWARM, and Keil MDK IDE |
+| **[STM32L053 demo](https://github.com/RTEdbg/RTEdbgDemo/tree/master/STM32L053)** | Demo code for the NUCLEO-L053 (ARM Cortex-M0+) - STM32CubeIDE, IAR EWARM, and Keil MDK IDE |
+| **[lpcxpresso54628_hello_world](https://github.com/RTEdbg/RTEdbgDemo/tree/master/lpcxpresso54628_hello_world)** | Demo code for the NXP LPCXpresso54628 (ARM Cortex-M0+) - MCUXpresso IDE |
+| [**RTEcomLib_NUCLEO_C071RB_Demo**](https://github.com/RTEdbg/RTEcomLib_NUCLEO_C071RB_Demo) | Demo code for the RTEcomLib library running on the STM NUCLEO-C071RB demo board (Cortex-M0+). |
+| **[ARM Cortex-M0/M0+ <br> Exception handler demo](https://github.com/RTEdbg/RTEcomLib_NUCLEO_C071RB_Demo/blob/master/Exception_handler_Cortex-M0.md)** | The demo shows a simple way to log the ARM Cortex-M0/M0+ registers and the stack when a system exception or an unhandled interrupt has occurred. |
+| **[ARM Cortex-M4/M7 <br> Exception handler demo]()**  | The demo shows how to log the ARM Cortex-M4/M7 CPU core and system registers when a system exception or an unhandled interrupt has occurred. |
+| | |
+
+Some of the demo projects are also included in the distribution ZIP file - see **[Releases](https://github.com/RTEdbg/RTEdbg/releases)**. Each demo folder for the STM32 CPU family contains the complete setup for the STM32CubeIDE (main folder), IAR EWARM (EWARM subfolder) and for the Keil MDK (MDK-ARM subfolder) toolchains. Not all compiler/linker settings are the same for different IDEs. The demo projects also include a demonstration of how to transfer data from the embedded system to the host using the RTEgdbData utility (see \"TEST RTEgdbData\" folders) or using the tools that are part of the Debug Probe software.
 
 ## Installation Instructions
 
-The full toolkit can only be downloaded from **[download page](https://github.com/RTEdbg/RTEdbg/releases)**. The toolkit is currently available for Windows only. Extract the ZIP file into the "c:\RTEdbg folder". This will ensure that the correct paths are used in the demo projects.
-
-## Demo Projects
-Demo projects are currently only provided in the project distribution ZIP file. Complete settings are provided for the STM32CubeIDE, MCUXpresso, Keil MDK and IAR EWARM IDEs. Follow the instructions in the *RTEdbg Manual* &Rightarrow; *Demo Projects*. The demo projects also include a demonstration of how to transfer data from the embedded system to the host using the RTEgdbData utility (see \"TEST RTEgdbData\" folders) or using the tools that are part of the Debug Probe software.
+The full toolkit can only be downloaded from **[download page](https://github.com/RTEdbg/RTEdbg/releases)**. The toolkit is currently available for Windows only. Extract the ZIP file into the `c:\RTEdbg` folder. This will ensure that the correct paths are used in the demo projects.
 
 ## How to Contribute or Get Help
 Follow the [Contributing Guidelines](https://github.com/RTEdbg/RTEdbg/blob/master/docs/CONTRIBUTING.md) for bug reports and feature requests regarding the RTEdbg library. Source code for other parts of the toolkit will be released later, after their documentation has been translated to English. 
 Please use **[RTEdbg.freeforums.net](https://rtedbg.freeforums.net/)** for general discussions about the RTEmsg application and the RTEdbg toolkit.
 
-When asking a support question, be clear and take the time to explain your problem properly. If your problem is not strictly related to this project, we recommend that you use [Stack Overflow](https://stackoverflow.com/) or similar question-and-answer website instead. First, check if the **[RTEdbg manual](https://github.com/RTEdbg/RTEdbg/releases/download/Documentation/RTEdbg.library.and.tools.manual.pdf)** already contains an answer to your question or a solution to your problem.
+When asking a support question, be clear and take the time to explain your problem properly. If your problem is not strictly related to this project, we recommend that you use [Stack Overflow](https://stackoverflow.com/), [r/Embedded](https://www.reddit.com/r/embedded/) or similar question-and-answer website instead. First, check if the **[RTEdbg manual](https://github.com/RTEdbg/RTEdbg/releases/download/Documentation/RTEdbg.library.and.tools.manual.pdf)** already contains an answer to your question or a solution to your problem.
 
 ## About the Author
 The author works in real-time control and power electronics design for battery-powered systems. He has been developing his own debugging solutions since learning to program on a Sinclair ZX80. This project is the author's first universal toolkit. Credits go to Stefan Milivojčev, who participated in the development of the RTEmsg format definition parser as part of his master's thesis and helped with the Github workflows.
 
 English is not the native language of the author. Google Translate and DeepL Write were used to improve the documentation. Thanks in advance for your comments and contributions that will help improve the library, tools, and documentation. This is the author's first open source project published on Github and his contribution to the open source community. Please be patient. The author is working on this project in his spare time.
+
+## Other data logging/tracing solutions
+
+See a list of some other data logging, tracing, and debugging solutions in [Other_data_logging_solutions.md](./docs/Other_data_logging_solutions.md).
