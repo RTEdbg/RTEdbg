@@ -11,7 +11,7 @@ The table below lists some of the data logging and analysis tools (mostly open s
 |[VxWorks System Viewer](https://learning.windriver.com/vxworks-7-system-viewer) | Commercial tool used to collect instances of pre-configured times tamped events and display them in graphical or tabular format.|
 |[Linux Trace Toolkit <br> LTT, LTTng](https://en.wikipedia.org/wiki/Linux_Trace_Toolkit) | Various tools designed to log program execution details from a patched Linux kernel and then perform various analyses on them. Several versions available:  [Dtrace](https://en.wikipedia.org/wiki/DTrace), [ftrace](https://en.wikipedia.org/wiki/Ftrace), [strace](https://en.wikipedia.org/wiki/Strace), etc.|
 |[Spdlog](https://github.com/gabime/spdlog)	| Fast C++ logging library|
-|[RTEMS Trace](https://docs.rtems.org/branches/master/user/tracing/introduction.html) | Logging for RTOS-based systems|
+|[RTEMS Trace](https://docs.rtems.org/docs/main/user/tracing/introduction.html) | Logging for RTOS-based systems|
 |[Microsoft TraceX](https://learn.microsoft.com/en-us/azure/rtos/tracex/overview-tracex) | Windows-based system analysis tool for Microsoft Azure RTOS|
 |[QP/Spy <br> Software Tracing](https://www.state-machine.com/qtools/qpspy.html) | Software trace and test system designed specifically for embedded systems.|
 |[TRICE](https://github.com/rokath/trice) | Open-source tool and library  for efficient logging in real-time embedded systems.|
