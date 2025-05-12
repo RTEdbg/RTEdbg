@@ -1,7 +1,13 @@
 ## **RTEdbg project news**
 
+### 2025-05-12
+RTEdbg library, tools and demo code version 1.01.00A released.
+* The new RTEgetData data transfer utility replaces the RTEgdbData and RTEcomData
+* Updated `RTEcomLib` and `RTEcomLib_NUCLEO_C071RB_Demo` repositories
+* Various smaller documentation updates
+
 ### 2025-02-16
-RTEdbg library, tools and demo code version 1.01.01 released.
+RTEdbg library, tools and demo code version 1.01.00 released.
 * Added logging of messages on unlined addresses for processors that do not support unlined addressing in hardware.
 * Added conditional translation option for an even smaller data logging code footprint.
 * Updated RTEgdbData and RTEmsg utilities

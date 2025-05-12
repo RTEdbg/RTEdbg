@@ -18,6 +18,7 @@ The table below lists some of the data logging and analysis tools (mostly open s
 |[Embedded Logger](https://github.com/martinribelotta/elog)	| Logging solution that moves fixed strings outside the final binary|
 |[μP7 library](https://baical.net/up7.html) | Lightweight C library for sending logs to the host|
 |[NanoLog](https://github.com/PlatformLab/NanoLog)| Fast logging system for C++ with a simple printf-like API - see [article](https://www.usenix.org/system/files/conference/atc18/atc18-yang.pdf) |
+| [MCU Logging](https://docs.memfault.com/docs/mcu/logging) | The Memfault SDK offers a simple RAM based logging buffer. |
 |[MCUViewer](https://github.com/klonyyy/MCUViewer) | Open-source GUI debug tool for microcontrollers (Global variable and Trace Viewer)|
 |[ESP IDF](https://github.com/espressif/esp-idf/blob/v5.2.1/docs/en/api-guides/app_trace.rst) | ESP Application Level Tracing Library|
 |[Dictionary-based <br> Logging](https://docs.zephyrproject.org/3.1.0/services/logging/index.html#dictionary-based-logging) | Zephyr Dictionary-based Logging|

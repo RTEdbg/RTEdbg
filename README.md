@@ -11,10 +11,8 @@ The RTEdbg library and tools are suitable for both large, hard-real-time RTOS-ba
 
 View the **[RTEdbg Presentation](https://github.com/RTEdbg/RTEdbg/releases/download/Documentation/RTEdbg.Presentation.pdf)** to learn about the key benefits and to see the basic features.<br>
 
-### **Newsflash** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Rightarrow; See also all **[News](https://github.com/RTEdbg/RTEdbg/blob/master/docs/NEWS.md)**
-* Added logging of messages on unlined addresses for processors that do not support unlined addressing in hardware.
-* Added conditional translation option for an even smaller data logging code footprint.
-* Updated RTEgdbData and RTEmsg utilities
+### **Newsflash** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Rightarrow; See also: **[News](https://github.com/RTEdbg/RTEdbg/blob/master/docs/NEWS.md)**
+* New RTEgetData utility replaces RTEgetData and RTEcomData
 * Updated documentation
 
 ## Table of contents:
@@ -22,6 +20,7 @@ View the **[RTEdbg Presentation](https://github.com/RTEdbg/RTEdbg/releases/downl
 * [Getting Started](#Getting-Started)
 * [RTEdbg Schematic Presentation](#RTEdbg-Schematic-Presentation)
 * [Repository Structure](#Repository-Structure)
+* [Articles on Code Instrumentation, Logging, and Tracing](#articles-on-code-instrumentation-logging-and-tracing)
 * [Demo Projects](#Demo-Projects)
 * [Installation Instructions](#Installation-Instructions)
 * [How to Contribute or Get Help](#How-to-Contribute-or-Get-Help)
@@ -31,7 +30,7 @@ View the **[RTEdbg Presentation](https://github.com/RTEdbg/RTEdbg/releases/downl
 **The solution was designed with a focus on maximum execution speed, low memory and stack requirements, and portability. It is essentially a reentrant timestamped *fprintf()* function that runs on the host instead of the embedded system.** Flexible filtering and sorting of data into user-defined files helps manage the flood of data from the embedded system.
 The new data logging/tracing solution is not a replacement for existing event-oriented solutions such as SystemView or Tracealyzer, as it is based on a different concept. It is optimized for minimally intrusive logging and flexible data decoding. Flexible decoding (printing) of data enables analysis of log files with existing tools (log viewers, graphing and event analysis tools). The code is optimized for 32-bit devices. For example: Only 35 CPU cycles and 4 bytes of stack are required to log a simple event on a device with a Cortex-M4 core. The total program memory footprint is only about 1 kB (using all functions, not including function calls and function parameter preparation). For the [SystemView](https://www.segger.com/downloads/free-utilities/UM08027) nearly 200 CPU cycles and a maximum of 150 to 510 bytes of stack are required for event generation and encoding. Even faster execution and lower stack usage can be achieved while using the inline versions of the data logging functions at the expense of higher program memory usage - for example, the inline versions can be used in the most time critical parts of the code only.
 
-Code instrumentation is minimally intrusive because raw binary data is logged along with an automatically assigned format definition ID (transparent to the programmer) and timestamp. Raw data logging also minimizes circular buffer requirements. **Any data type or entire structures/buffers can be logged and decoded, including bit fields and packed structures.** In addition, there is no need for format strings or data formatting/tagging functions in the embedded system. **Any debug probe, communication channel, or media can be used to transfer data to the host.** Because data is logged in raw binary form, bandwidth requirements are low. The [**RTEgdbData**](https://github.com/RTEdbg/RTEgdbData) tool for transferring binary log data to a host using the debug probe GDB server is part of the RTEdbg project.
+Code instrumentation is minimally intrusive because raw binary data is logged along with an automatically assigned format definition ID (transparent to the programmer) and timestamp. Raw data logging also minimizes circular buffer requirements. **Any data type or entire structures/buffers can be logged and decoded, including bit fields and packed structures.** In addition, there is no need for format strings or data formatting/tagging functions in the embedded system. **Any debug probe, communication channel, or media can be used to transfer data to the host.** Because data is logged in raw binary form, bandwidth requirements are low. The [**RTEgetData**](https://github.com/RTEdbg/RTEgetData) tool for transferring binary log data to a host using the debug probe GDB server is part of the RTEdbg project.
 
 **The toolkit can be used for any type of project**, from small resource-constrained to large RTOS-based, including hard real-time or functional safety. Low stack requirements virtually eliminate the possibility of stack overflows after existing code instrumentation. Data logging functions are reentrant and do not disable interrupts if the microcontroller supports the exclusive access (mutex) instructions.
 See the [**RTEdbg Toolkit Suitability Guide**](https://github.com/RTEdbg/RTEdbg/blob/master/docs/Toolkit_Suitability_Guide.md) for examples where the toolkit could be used.
@@ -51,6 +50,13 @@ The RTEmsg utility performs offline decoding of binary data. Logged messages are
 
 Real-time systems generate a flood of data, and it is important to sort the data before analyzing it to quickly identify potential problems (data extremes, errors, warnings). Programmers specify how the logged data is printed and into how many output files it is sorted (printed). Important messages or values can be written to more than one output file, each value in a different format. Existing data and event analysis tools can be used because flexible data formatting allows adaptation to the needs of existing data/event analysis or graphing tools.
 
+## Articles on Code Instrumentation, Logging, and Tracing
+
+* [Improving Firmware Quality with Instrumentation - Part 1: Benefits and Limitations](https://www.embedded.com/improving-firmware-quality-with-instrumentation-part-1-benefits-and-limitations/) &rarr; *embedded.com*
+* [Improving Firmware Quality with Instrumentation - Part 2: The RTEdbg Toolkit](https://www.embedded.com/improving-firmware-quality-with-instrumentation-part-2-the-rtedbg-toolkit/) &rarr; *embedded.com*
+
+<br>
+
 ## Repository Structure
 The code and documentation for the libraries and tools can be found in the following repositories.
 
@@ -58,10 +64,9 @@ The code and documentation for the libraries and tools can be found in the follo
 |:---:|:-----------|
 | [**RTEdbg**](https://github.com/RTEdbg/RTEdbg) | Main repository used to distribute the RTEdbg toolkit - see the **[Releases - download page](https://github.com/RTEdbg/RTEdbg/releases)**. This repository does not contain any source code. See other repositories below for library and tool source code. |
 | [**RTElib**](https://github.com/RTEdbg/RTElib) | A re-entrant library of functions for minimally intrusive code instrumentation (data logging and tracing). Functions collect data in a circular buffer in RAM.  | 
-| [**RTEgdbData**](https://github.com/RTEdbg/RTEgdbData) | A tool for transferring binary log data to a host using the GDB server (it is part of the Debug Probe software). Other ways to transfer data to the host are described in the RTEdbg manual. |
+| [**RTEgetData**](https://github.com/RTEdbg/RTEgetData) | A tool for transferring binary log data to a host using a COM port or a GDB server. This utility replaces RTEgdbData. Other ways to transfer data to the host are described in the RTEdbg manual.|
 | [**RTEmsg**](https://github.com/RTEdbg/RTEmsg) | Offline binary data decoding application that runs on the host. |
 | [**RTEcomLib**](https://github.com/RTEdbg/RTEcomLib) | Functions for log data transfer to host via serial channel. |
-| [**RTEcomData**](https://github.com/RTEdbg/RTEcomData) | Utility for log data transfer to host via serial channel. |
 | | |
 
 ## Demo Projects
@@ -74,20 +79,19 @@ The code and additional documentation for demo projects and exception handlers c
 | **[STM32L433 demo](https://github.com/RTEdbg/RTEdbgDemo/tree/master/STM32L433)** | Demo code for the NUCLEO-L433 (ARM Cortex-M4) - STM32CubeIDE, IAR EWARM, and Keil MDK IDE |
 | **[STM32L053 demo](https://github.com/RTEdbg/RTEdbgDemo/tree/master/STM32L053)** | Demo code for the NUCLEO-L053 (ARM Cortex-M0+) - STM32CubeIDE, IAR EWARM, and Keil MDK IDE |
 | **[lpcxpresso54628_hello_world](https://github.com/RTEdbg/RTEdbgDemo/tree/master/lpcxpresso54628_hello_world)** | Demo code for the NXP LPCXpresso54628 (ARM Cortex-M0+) - MCUXpresso IDE |
-| [**RTEcomLib_NUCLEO_C071RB_Demo**](https://github.com/RTEdbg/RTEcomLib_NUCLEO_C071RB_Demo) | Demo code for the RTEcomLib library running on the STM NUCLEO-C071RB demo board (Cortex-M0+). |
+| [**RTEcomLib_NUCLEO_C071RB_Demo**](https://github.com/RTEdbg/RTEcomLib_NUCLEO_C071RB_Demo) | Demo code for the RTEcomLib library running on the STM NUCLEO-C071RB demo board (Cortex-M0+). The **RTEcomLib** library allows the transfer of log data to a host system via a serial communication channel. The provided demo includes a simple and efficient exception handling/logging demonstration for devices based on the Cortex-M0/M0+ core. |
 | **[ARM Cortex-M0/M0+ <br> Exception handler demo](https://github.com/RTEdbg/RTEcomLib_NUCLEO_C071RB_Demo/blob/master/Exception_handler_Cortex-M0.md)** | The demo shows a simple way to log the ARM Cortex-M0/M0+ registers and the stack when a system exception or an unhandled interrupt has occurred. |
 | **[ARM Cortex-M4/M7 <br> Exception handler demo](https://github.com/RTEdbg/RTEdbgDemo/blob/master/Simple_STM32H743/RTEdbg/Demo_code/Cortex_M4-M7_fault_handler.md)**  | The demo shows how to log the ARM Cortex-M4/M7 CPU core and system registers when a system exception or an unhandled interrupt has occurred. |
 | | |
 
-Some of the demo projects are also included in the distribution ZIP file - see **[Releases](https://github.com/RTEdbg/RTEdbg/releases)**. Each demo folder for the STM32 CPU family contains the complete setup for the STM32CubeIDE (main folder), IAR EWARM (EWARM subfolder) and for the Keil MDK (MDK-ARM subfolder) toolchains. Not all compiler/linker settings are the same for different IDEs. The demo projects also include a demonstration of how to transfer data from the embedded system to the host using the RTEgdbData utility (see \"TEST RTEgdbData\" folders) or using the tools that are part of the Debug Probe software.
+Some of the demo projects are also included in the distribution ZIP file - see **[Releases](https://github.com/RTEdbg/RTEdbg/releases)**. Each demo folder for the STM32 CPU family contains the complete setup for the STM32CubeIDE (main folder), IAR EWARM (EWARM subfolder) and for the Keil MDK (MDK-ARM subfolder) toolchains. Not all compiler/linker settings are the same for different IDEs. The demo projects also include a demonstration of how to transfer data from the embedded system to the host using the RTEgetData utility (see \"TEST RTEgetData\" folders) or using the tools that are part of the Debug Probe software.
 
 ## Installation Instructions
 
 The full toolkit can only be downloaded from **[download page](https://github.com/RTEdbg/RTEdbg/releases)**. The toolkit is currently available for Windows only. Extract the ZIP file into the `c:\RTEdbg` folder. This will ensure that the correct paths are used in the demo projects.
 
 ## How to Contribute or Get Help
-Follow the [Contributing Guidelines](https://github.com/RTEdbg/RTEdbg/blob/master/docs/CONTRIBUTING.md) for bug reports and feature requests regarding the RTEdbg library. Source code for other parts of the toolkit will be released later, after their documentation has been translated to English. 
-Please use **[RTEdbg.freeforums.net](https://rtedbg.freeforums.net/)** for general discussions about the RTEmsg application and the RTEdbg toolkit.
+Follow the [Contributing Guidelines](https://github.com/RTEdbg/RTEdbg/blob/master/docs/CONTRIBUTING.md) for bug reports and feature requests regarding the RTEdbg library. Follow the [Discussions Guidelines](https://docs.github.com/en/discussions/guides/best-practices-for-community-conversations-on-github) for general discusion about this repository.
 
 When asking a support question, be clear and take the time to explain your problem properly. If your problem is not strictly related to this project, we recommend that you use [Stack Overflow](https://stackoverflow.com/), [r/Embedded](https://www.reddit.com/r/embedded/) or similar question-and-answer website instead. First, check if the **[RTEdbg manual](https://github.com/RTEdbg/RTEdbg/releases/download/Documentation/RTEdbg.library.and.tools.manual.pdf)** already contains an answer to your question or a solution to your problem.
 

@@ -10,7 +10,7 @@ See if you can contribute to any of the activities listed or suggest new ones. <
 - Testing of full functionality including RTEmsg PC utility for data decoding, sorting and statistics.
 - Demo project improvements and additional demo projects.
 - Development of tools for streaming mode data transfer to the host (see list below).
-- Enhancement of RTEgdbData utility with graphical user interface
+- Enhancement of RTEgetData utility with graphical user interface
 - Enhancements to the RTEmsg binary data decoding application (see list below).
 - Integration with other tools to support testing and debugging.
 - Instructions on how to use trace and log data tools to analyze or verify data obtained from data capture and decoding.
@@ -21,7 +21,6 @@ See if you can contribute to any of the activities listed or suggest new ones. <
 Existing solutions only allow the transfer of logged binary data from the embedded system via a debugger probe. Only snapshot or single-shot data logging is available, not streaming data logging.
 
 Streaming (continuous) data acquisition requires solutions for transferring (or recording) data via, for example:
-- Serial port (e.g. VCP over USB connection)
 - TCP/IP
 - SD card
 - USB flash drive
@@ -35,4 +34,4 @@ Streaming (continuous) data acquisition requires solutions for transferring (or 
 ### **In progress**
 - Instructions for integrating event logging into an RTOS with examples for FreeRTOS.
 - Utility for transferring logged data to the host via COM port
-- RTEgdbData utility extension to transfer multiple snapshots to host
+- RTEgetData utility extension to transfer multiple snapshots to host
