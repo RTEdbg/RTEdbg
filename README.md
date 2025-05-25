@@ -12,8 +12,7 @@ The RTEdbg library and tools are suitable for both large, hard-real-time RTOS-ba
 View the **[RTEdbg Presentation](https://github.com/RTEdbg/RTEdbg/releases/download/Documentation/RTEdbg.Presentation.pdf)** to learn about the key benefits and to see the basic features.<br>
 
 ### **Newsflash** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Rightarrow; See also: **[News](https://github.com/RTEdbg/RTEdbg/blob/master/docs/NEWS.md)**
-* New RTEgetData utility replaces RTEgetData and RTEcomData
-* Updated documentation
+* Timestamp [timer driver](https://github.com/RTEdbg/RTElib/tree/master/Portable/Timer/ESP32/rtedbg_timer_esp32.h) for the ESP32 and [instructions](https://github.com/RTEdbg/RTElib/tree/master/Portable/Timer/ESP32/Readme.md) added.
 
 ## Table of contents:
 * [Introduction](#Introduction)
