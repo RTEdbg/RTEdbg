@@ -1,5 +1,9 @@
 ## **RTEdbg project news**
 
+### 2025-09-04
+* Updated documentation
+* Added [code size optimized ARM Cortex-M4/M7 fault handler](https://github.com/RTEdbg/RTEdbgDemo/blob/master/STM32L433/RTEdbg/Demo_code/Simple_Cortex_M4-M7_fault_handler.md) demo
+
 ### 2025-05-23
 * Timestamp [timer driver](https://github.com/RTEdbg/RTElib/tree/master/Portable/Timer/ESP32/rtedbg_timer_esp32.h) for the ESP32 and [instructions](https://github.com/RTEdbg/RTElib/tree/master/Portable/Timer/ESP32/Readme.md) added.
 
