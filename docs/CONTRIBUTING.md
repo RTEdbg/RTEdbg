@@ -48,7 +48,7 @@ Follow the guidelines for [Creating a pull request](https://docs.github.com/en/p
 
 ## Coding Style
 
-The C code should adhere to [Barr Group Embedded C Coding Standard](https://barrgroup.com/embedded-systems/books/embedded-c-coding-standard).
+The C code should adhere to [Barr Group Embedded C Coding Standard](https://barrgroup.com/sites/default/files/barr_c_coding_standard_2018.pdf).
 
 ## Code of Conduct
 

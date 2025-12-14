@@ -11,10 +11,9 @@ See if you can contribute to any of the activities listed or suggest new ones. <
 - Demo project improvements and additional demo projects.
 - Development of tools for streaming mode data transfer to the host (see list below).
 - Enhancement of RTEgetData utility with graphical user interface
-- Enhancements to the RTEmsg binary data decoding application (see list below).
 - Integration with other tools to support testing and debugging.
 - Instructions on how to use trace and log data tools to analyze or verify data obtained from data capture and decoding.
-- Trace support for popular RTOS and demo code (FreeRTOS, ThreadX, Zephyr, etc.).
+- Trace support for popular RTOS and demo code (ThreadX, Zephyr, etc.).
 - Instructions and examples for preparing data for trace analysis - e.g. for [Eclipse Trace Compass](https://projects.eclipse.org/projects/tools.tracecompass) using the [BTF](https://wiki.eclipse.org/images/e/e6/TA_BTF_Specification_2.1.3_Eclipse_Auto_IWG.pdf) or similar trace format.
 
 ### Tools for transferring data from the embedded system to the host
@@ -29,9 +28,6 @@ Streaming (continuous) data acquisition requires solutions for transferring (or 
 ### RTEmsg binary data decoding application
 - Streaming mode decoding support
 - Support for binary files containing multiple singleshot and snapshot data
-- Translation of Messages.txt file to other languages
 
-### **In progress**
-- Instructions for integrating event logging into an RTOS with examples for FreeRTOS.
-- Utility for transferring logged data to the host via COM port
-- RTEgetData utility extension to transfer multiple snapshots to host
+### In progress
+- Extension of RTEgetData utility with new modes that support the retrieval of both multiple, discrete data snapshots and continuous, uninterrupted data streams.

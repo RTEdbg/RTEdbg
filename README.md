@@ -8,13 +8,16 @@ This solution empowers embedded programmers to efficiently test and debug C/C++ 
 
 The **RTEdbg** library and tools are designed for both large, hard real-time RTOS-based systems and small, resource-constrained devices. Unlike traditional debuggers, they offer deeper visibility into real-time system behavior without halting execution. Stopping and restarting a real-time system alters its operating conditions, often producing inconsistent results—and in some cases, loss of control may even lead to system damage. 
 
-View the **[RTEdbg Presentation](https://github.com/RTEdbg/RTEdbg/releases/download/Documentation/RTEdbg.Presentation.pdf)** to learn about the key benefits and to see the basic features.
+View the **[RTEdbg Presentation](https://github.com/RTEdbg/RTEdbg/releases/download/Documentation/RTEdbg.Presentation.pdf)** to learn about the key benefits and to see the basic features. <br>
+See also examples of **[Various Data Export and Visualization Possibilities](Views.md)**.
 
 **Note:** This is the main repository used to distribute the RTEdbg toolkit. <br> See the **[List of repositories](#Repository-Structure)** that are part of the RTEdbg toolkit. <br> These repositories contain the logging library, tools, and demo code.
 
 ### **Newsflash** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Rightarrow; See also: **[News](https://github.com/RTEdbg/RTEdbg/blob/master/docs/NEWS.md)**
-* Documentation updated
-* Added [code size optimized ARM Cortex-M4/M7 fault handler](https://github.com/RTEdbg/RTEdbgDemo/blob/master/STM32L433/RTEdbg/Demo_code/Simple_Cortex_M4-M7_fault_handler.md) demo.
+* FreeRTOS trace support added. Preconfigured to export data to separate log files as well as VCD files for graphical display and analysis of code execution. See **[FreeRTOS trace demo](https://github.com/RTEdbg/FreeRTOS-trace-demo)**.
+* Added support for exporting timing data to Value Change Dump (VCD) files. <br> This allows users to visualize signal changes and timing relationships in standard waveform viewing tools. See the RTEdbg Manual (section Exporting Data for Visual Data and Timing Analysis) and **[FreeRTOS trace demo](https://github.com/RTEdbg/FreeRTOS-trace-demo)** for VCD export examples.
+* Support for RTE_MSG5() ... RTE_MSG8() macros added. This enables logging of a larger number of individual data items with a single RTEdbg macro.
+* Various extensions and improvements to the RTEmsg message decoding utility.
 
 ## Table of contents:
 * [Introduction](#Introduction)
@@ -29,7 +32,7 @@ View the **[RTEdbg Presentation](https://github.com/RTEdbg/RTEdbg/releases/downl
 * [About the Author](#About-the-Author)
 
 ## Introduction
-The solution was designed with a focus on **maximum execution speed, low memory and stack requirements, and portability**. It is essentially a **reentrant timestamped *fprintf()* function that runs on the host instead of the embedded system.** Flexible filtering and sorting of data into user-defined files helps manage the flood of data from the embedded system. Any part of the logged data (message) can be printed to any number of output files in any format, from an ordinary log file to CSV. For example, the data can be directly exported to one or more CSV files for graphing and/or data analysis using spreadsheet software.
+The solution was designed with a focus on **maximum execution speed, low memory and stack requirements, and portability**. It is essentially a **reentrant timestamped *fprintf()* function that runs on the host instead of the embedded system.** Flexible filtering and sorting of data into user-defined files helps manage the flood of data from the embedded system. Any part of the logged data (message) can be printed to any number of output files in any format, from an ordinary log file to CSV. For example, the data can be directly exported to one or more CSV files for graphing (visualization) and/or data analysis using spreadsheet software. The data can also be **exported in VCD (Value Change Dump) format**, which is a standard file for recording signal changes over time. This format allows the stored information (analog/digital/timing) to be opened and analyzed using standard graphical programs designed for viewing waveforms, such as the open-source tool [GTKWave](https://gtkwave.github.io/gtkwave/).
 
 The new data logging/tracing solution is not a direct replacement for existing event-oriented solutions such as SystemView or Tracealyzer, as it is based on a different concept. It is optimized from ground up for minimally intrusive logging and flexible data decoding. Flexible decoding (printing) of data enables analysis of log files with existing tools (log viewers, graphing and event analysis tools). The code is optimized for 32-bit devices. For example: On a Cortex-M4 device, logging a simple event with the standard logging function version requires only about 35 CPU cycles and 4 bytes of stack. For the [SystemView](https://www.segger.com/downloads/jlink/UM08027_SystemView.pdf) nearly 200 CPU cycles and a maximum of 150 to 510 bytes of stack are required for event generation and encoding. 
 
@@ -55,9 +58,12 @@ A ZIP file containing the complete toolkit, documentation and selected demo proj
 ## RTEdbg Schematic Presentation ##
 ![RTEdbg_presentation](https://github.com/RTEdbg/RTEdbg/assets/144953452/0b84dfc4-6e0f-4aec-aa1c-3fe04686e99e)
 
-The schematic shows how data logging can be integrated into embedded system firmware. Only a C source file with logging functions and some header files need to be added to the project. Any C or C++ code can be instrumented – including drivers, exception handlers, and RTOS kernel. The logging functions save raw binary data in a data structure in RAM without using time- or buffer-consuming data tagging and/or encoding. The core of this data structure is a buffer that operates either as a linear buffer in single-shot logging mode or as a circular buffer otherwise. All data is processed and stored in 32-bit chunks. This design ensures that the operation is extremely fast and efficient on 32-bit processors.
+The schematic shows how data logging can be integrated into embedded system firmware. Only a C source file with logging functions and some header files need to be added to the project. Any C or C++ code can be instrumented – including drivers, exception handlers, and RTOS kernel. The logging functions **save raw binary data** in a **data structure in RAM** without using time- or buffer-consuming data tagging and/or encoding. 
+The core of the data structure is a buffer that operates either as a linear buffer in single-shot logging mode or as a circular buffer otherwise. All data is processed and stored in 32-bit chunks. This design ensures that the operation is extremely fast and efficient on 32-bit processors. The data structure includes a 24-byte header containing the buffer index and size, message filter values, timestamp frequency, and logging configuration.
 
-Any interface or media can be used to transfer data to the host for decoding and analysis, since only the contents of a data structure need be transferred. The captured data can be transferred to the host, decoded, and analyzed while the target code is running normally. 
+The **data logging structure** 
+
+**Any interface or media can be used to transfer data to the host** for decoding and analysis, since only the contents of a data structure need be transferred. The captured data can be transferred to the host, decoded, and analyzed while the target code is running normally. 
 
 The **RTEmsg utility** performs offline decoding of binary data. Logged messages are decoded (printed) to one or several files using fprintf-style format definitions (the are defined in C header files). The data logged with a log function call can hold multiple values, and each of them can be printed to any number of files using different format definitions (different print strings). This allows the decoded information to be sorted so that the important information is collected together (e.g. 'warnings.log') and can be quickly reviewed by the tester (rather than having to search through a long main log file). This tool not only decodes and sorts the recorded data, but also generates statistical report for the decoded values and times, allowing testers to quickly find extreme values. If errors are found in the binary file or in the format definition files, they are reported in the 'Errors.log' file.
 
@@ -132,6 +138,7 @@ The code and additional documentation for demo projects and exception handlers c
 | Repository | Description |
 |:---:|:-----------|
 | **[Simple_STM32H743 demo](https://github.com/RTEdbg/RTEdbgDemo/tree/master/Simple_STM32H743)** | Simplest version of demo code for the NUCLEO-H743ZI/ZI2 (ARM Cortex-M7) - STM32CubeIDE, IAR EWARM, and Keil MDK IDE. <br> This repository was used as a reference to demonstrate which **RTEdbg library** files need to be added to a project and what changes must be made to the project settings. For more details, refer to the project description in the **RTEdbg manual**, section **Simple Demo Project**. |
+|**[FreeRTOS trace demo](https://github.com/RTEdbg/FreeRTOS-trace-demo)** | A demonstration of how to integrate RTEdbg based trace functionality into a FreeRTOS-based application. The demo also shows how to export data to a VCD file for displaying values and timing graphically with VCD viewers. |
 | **[STM32H743 demo](https://github.com/RTEdbg/RTEdbgDemo/tree/master/STM32H743)** | Demo code for the NUCLEO-H743ZI/ZI2 (ARM Cortex-M7) - STM32CubeIDE, IAR EWARM, and Keil MDK IDE |
 | **[STM32L433 demo](https://github.com/RTEdbg/RTEdbgDemo/tree/master/STM32L433)** | Demo code for the NUCLEO-L433 (ARM Cortex-M4) - STM32CubeIDE, IAR EWARM, and Keil MDK IDE |
 | **[STM32L053 demo](https://github.com/RTEdbg/RTEdbgDemo/tree/master/STM32L053)** | Demo code for the NUCLEO-L053 (ARM Cortex-M0+) - STM32CubeIDE, IAR EWARM, and Keil MDK IDE |

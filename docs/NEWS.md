@@ -1,5 +1,11 @@
 ## **RTEdbg project news**
 
+### 2025-11-30
+ * FreeRTOS trace support added. Preconfigured to export data to separate log files as well as VCD file for graphical display and analysis of code execution. See **[FreeRTOS trace demo](https://github.com/RTEdbg/FreeRTOS-trace-demo)**.
+* Added support for exporting timing data to Value Change Dump (VCD) files. <br> This allows users to visualize signal changes and timing relationships in standard waveform viewing tools. See the RTEdbg Manual (section Exporting Data for Visual Data and Timing Analysis) and **[FreeRTOS trace demo](https://github.com/RTEdbg/FreeRTOS-trace-demo)** for VCD export examples.
+* Support for RTE_MSG5() ... RTE_MSG8() macros added. This enables logging of a larger number of individual data items with a single RTEdbg macro.
+* RTEmsg with new features: export to Value Change Dump (VCD) files, text strings up to 6 characters long can be stored/recalled using MEMO functionality, added support for additional RTE_MSG macros, etc.
+
 ### 2025-09-04
 * Updated documentation
 * Added [code size optimized ARM Cortex-M4/M7 fault handler](https://github.com/RTEdbg/RTEdbgDemo/blob/master/STM32L433/RTEdbg/Demo_code/Simple_Cortex_M4-M7_fault_handler.md) demo

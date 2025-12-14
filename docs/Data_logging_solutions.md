@@ -32,6 +32,7 @@ Note that this list is not exhaustive. If you are aware of robust logging or tes
 | [ulog](https://github.com/rdpoor/ulog) | Lightweight logging for embedded microcontrollers. |
 | [log.c](https://github.com/rxi/log.c) | A simple logging library implemented in C99. |
 | [pw_tokenizer](https://pigweed.dev/pw_tokenizer/) | Compress strings to shrink logs. |
+| [quill](https://github.com/odygrd/quill) | Asynchronous Low Latency C++ Logging Library |
 | | |
 
 Logging tools differ significantly in their **flexibility**, **intrusiveness**, **reentrancy**, **resource usage**, suitability for **bare-metal** and/or **RTOS-based systems**, **cost**, and more. Many of these tools are primarily designed for event logging, making them less suitable for general embedded system data logging. Additionally, they are often only partially configurable.

@@ -1,0 +1,255 @@
+== GTKWave - Quick Introduction and Shortcuts
+
+The open-source https://gtkwave.github.io/gtkwave/index.html[*GTKWave*] software is a popular and widely used viewer for Value Change Dump (VCD) data.
+The current implementation for exporting traces to VCD during binary log file decoding has been thoroughly tested with *GTKWave v3.3*.
+
+The GTKWave manual is available as a PDF file (https://gtkwave.sourceforge.net/gtkwave.pdf[gtkwave.pdf]) or as an
+on-line version - see https://gtkwave.github.io/gtkwave/[GTKWave Documentation]. GTKWave has many functions (many of them irrelevant for embedded system analysis) and thus the manual is large and complex. To
+get started quickly, this document briefly describes only the GTKWave functions that are essential for trace analysis. For an introduction, it is recommended to read just the following parts of the on-line documentation:
+
+* https://gtkwave.github.io/gtkwave/ui/overview.html[Overview]
+* https://gtkwave.github.io/gtkwave/ui/toolbar.html[Toolbar]
+* https://gtkwave.github.io/gtkwave/ui/mainwindow.html[Main Window] (the "Signals Frame" and "Wave Frame").
+
+=== GTKWave Installation
+
+The RTEdbg tools are currently only available for Windows. For a quick
+start get the ready to use Windows version:
+https://altushost-swe.dl.sourceforge.net/project/gtkwave/gtkwave-3.3.100-bin-win32/gtkwave-3.3.100-bin-win32.zip?viasf=1[gtkwave-3.3.100-bin-win32.zip].
+Copy the *gtkwave* folder contained in the zip file to your computer - 
+e.g. to `c:\gtkwave` or `c:\RTEdbg\UTIL\gtkwave`.
+
+*Setting Default File Associations for GTKWave:* To configure Windows to
+automatically open .vcd and .gtkw files using gtkwave.exe, you can use
+the built-in "Open with" command in File Explorer.
+
+*Set Association for .vcd files* first and repeat the steps for the .gtkw
+files:
+
+1. Find any file on your computer that has the .vcd extension (e.g.,
+timing.vcd).
+1. Right-click the .vcd file and select "Open with".
+1. Select "Choose another app" from the submenu.
+1. Select GTKWave: In the window that appears click "More apps" and then "Look for another app on this PC" (or similar wording in your language) and navigate to the directory where gtkwave.exe is installed (e.g., c:\gtkwave\bin\gtkwave.exe). Crucially, make sure the box next to "Always use this app to open .vcd files" (or similar wording) is checked.
+1. Confirm: Click "OK" or "Apply".
+
+This will enable the GTKWave program to automatically start when you
+double-click on a file with the .gtkw or .vcd extension and open the
+selected file.
+
+=== Export log data to VCD files
+
+For detailed instructions on how to export data to VCD files, please
+refer to the *RTEdbg Manual* - section "Exporting Data for Visual Data and
+Timing Analysis".
+
+*Note:* The RTEmsg software automatically creates a signal save files
+(.gtkw extension) for GTKWave during generation of a VCD file. The file
+stores the display settings for the signal waveforms and includes the
+list of displayed signals, their order, display settings, etc. If we
+open the file with .gtkw extension instead of the .vcd file with this
+program, all the signals are immediately displayed without manually
+selecting which signals to display, in what format they should be
+displayed, window size, etc.
+
+GTKWave offers limited capabilities for scaling and zooming analog
+signals. For more detailed analog signal analysis, it is recommended to
+export the values to a CSV file (or several CSV files), which can then
+be viewed using a dedicated CSV viewer or viewed and processed within
+spreadsheet software.
+
+=== Additional information
+
+. Signal waveforms marked with red color or "UNDEF" indicate that there
+is no corresponding value in the VCD file for that part of the graph for
+an individual signal.
+. In the signals window, it is possible to insert a blank line or
+comment for clarity (right mouse click + "Insert Blank" or "Insert
+Comment").
+. Shortcuts on the following page are for GTKWave parameters as in the
+sample gtkwave.ini configuration file.
+. https://gtkwave.github.io/gtkwave/tools/twinwave.html[TwinWave] is a
+front end to GTKWave that allows two sessions to be open at one time in
+a single window - see also
+https://gtkwave.github.io/gtkwave/man/twinwave.1.html[LINK]. This allows
+for comparing new versus old VCD log file versions or concurrently analyzing log
+data from multi-core processors (which should share a timestamp timer).
+Multiple VCD files can be opened at once, each launching a separate
+GTKWave instance.
+
+=== VCD File Debugging: Locating Errors
+
+When GTKWave encounters a structural error while parsing a VCD file, the
+error is usually reported through the console or a "DOS" command prompt
+window. Identifying the exact location of the error requires leveraging
+the information provided by the VCD Viewer parser.
+
+*Method 1: Direct Byte Location (If Available)*
+
+Check the Console Output: The error message may report the file location
+in bytes (an offset from the start of the file) - example: _Near byte
+8202, Unknown VCD identifier: 'E'_
+
+Use an Advanced Editor: Open the VCD file using a text editor capable of
+displaying the cursor's byte offset, such as Notepad++. Go directly to
+the reported byte location to inspect the problematic line. See the
+https://en.wikipedia.org/wiki/Value_change_dump[Value change dump] for
+basic VCD syntax.
+
+*Method 2: Using the Last Valid Timestamp*
+
+If the parser does not report the byte offset, it often prints the value
+of the last valid timestamp it successfully processed before the error
+occurred and parsing was terminated. Erroneous data is after this
+timestamp. Timestamp is reported in DOS window as: [xxxx] end time. Open
+the VCD file in the text editor and search for the timestamp marker:
+#xxxx (xxxx - timestamp in ns).
+
+=== Selected GTKWave v3.3 Shortcuts: Keyboard, Mouse, and Menu
+
+*Keyboard shortcuts*
+
+[width="100%",cols="21%,79%",]
+|===
+|*Keyboard* |*Description*
+
+|*Ctrl* + *0* |Adjusts the view to show all waveforms from the beginning to
+the end of the file.
+
+|*Ctrl* + *+* |Zoom In - Note: Does not work with the keypad plus.
+
+|*Ctrl* + *-* |Zoom Out - Note: Does not work with the keypad minus.
+
+|*b* |Copies the primary marker position to the B marker (useful for
+measuring A - B delta)
+
+|
+Cursor Left /
+Cursor Right
+|
+Moves the view to the next / previous transition point on the *selected
+signal*. 
+*Note:* It does not jump to every logged value; it shows where the value
+changes.
+|*Ctrl* + *X* |Delete the selected signal.
+
+|*Ctrl* + *V* |Insert the signal.
+
+|*Alt* + *7* / *Alt* + *8* |Quickly Move the Waveforms window left or right
+quickly.
+
+|*Alt* + *5* / *Alt* + *6* |Slowly move the Waveforms window left or right.
+
+|*F1* |Move (jump) to Time.
+
+|*Shift* + *Ctrl* + *R* |Reload the file after it has been regenerated.
+GTKWave deletes any signal that is no longer present in the VCD file
+from the current view. Conversely, any new signals must be added
+manually to the waveform display.
+
+|*Ctrl* + *W* |Close Window (Quit if only one window open).
+|===
+
+*Mouse actions*
+
+[width="100%",cols="30%,70%",]
+|===
+|*Action* |*Description*
+
+|Right click & hold + select area |Zoom to the area.
+
+|Scroll wheel / Shift + Scroll wheel |Move the Waveforms window left or
+right.
+
+|Ctrl + Scroll wheel |Zooms in or out on the time axis around the center
+of the current view.
+
+|Left click on signal name |Select the signal or move it by holding the
+mouse button.
+
+|Left click on waveform |Set the A marker position.
+
+|Scroll button click a|
+Set the B marker position (useful for measuring A - B delta).
+
+Click once more to remove it.
+
+|===
+
+*Menu commands*
+
+[width="100%",cols="32%,68%",]
+|===
+|*Command* |*Description*
+
+|File => Grab To File |Save the main window as a PNG file.
+
+|File => Write Save File As |The saved file will contain the traces, as
+well as their formats (e.g., binary, decimal, reverse), which are
+currently displayed and some other settings. +
+*Warning:* Do not save custom settings to the RTEmsg generated .gtkw
+file because it is automatically overwritten during subsequent binary log file decoding.
+
+|Edit => Data Format |Select the most appropriate data format according
+to the variable data.
+
+|Edit => Insert Analog Height Extension |Expand the height of the analog
+signal display. By default, analog signals are set to double pitch.
+
+|View => Scale to Time Dimension |Select scale in, for example, ms.
+
+|View => Show Mouseover |Enables the function where left-clicking on the
+signal waveform displays its value.
+|===
+
+=== The gtkwave.ini Configuration File
+
+Users can establish persistent default settings for GTKWave v3.3 by utilizing the gtkwave.ini configuration file. This prevents the need to manually adjust preferred settings every time a VCD (Value Change Dump)
+file is opened. The gtkwave.ini file must be created or copied into the user's profile directory - path: %USERPROFILE% (typical example: C:\Users\YourUserName\gtkwave.ini). This description applies specifically to running GTKWave under the Windows Operating System. 
+
+.*Sample Config File*
+----
+# GTKWave sample config file
+
+# Enables an alternative mode for the mouse wheel, typically used
+# for horizontal scrolling or zooming.
+alt_wheel_mode yes
+
+# Instructs GTKWave to initially crunch or zoom the traces to fit
+# the entire recorded time span onto the screen.
+do_initial_zoom_fit yes
+
+# When set to yes, the space between the traces and the next division
+# will be filled (used with analog traces, less impact on digital).
+fill_waveform yes
+
+# Setting hide_sst to yes disables the SST (Signal Search Table/Tool)
+# tab, leaving more space for the waveform window.
+# The SST is stil reachable - see submenu: Search => Signal Search Tree
+hide_sst no
+
+# When set to yes, traces selected or highlighted in the signal list
+# window will also be highlighted in the waveform display area.
+highlight_wavewindow yes
+
+# Sets the unit for time dimensions (e.g., s, ms, us, ns).
+scale_to_time_dimension ms
+
+# Setting splash_disable to yes prevents the splash screen from appearing on startup.
+splash_disable yes
+
+# When set to yes, the SST (Signal Search Tool/Table) pane is expanded/visible;
+# setting to no collapses it, leaving more space for the waveform window.
+sst_expanded no
+
+# Limits scrolling to only the use of scrollbars (disables mouse-based
+# panning/scrolling where applicable).
+use_scrollbar_only yes
+
+# Setting disable_mouseover to yes disables the mouseover/tooltip function that
+# usually shows signal values when hovering over the trace.
+disable_mouseover no
+----
+
+*For advanced users:* The GTKWave package file
+`gtkwave\share\gtkwave\examples\gtkwaverc` contains a complete version of the possible settings. Descriptions of individual parameters are in the GTKWave manual. From this you can also see how to change keyboard shortcuts and other parameters.
