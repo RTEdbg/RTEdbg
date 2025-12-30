@@ -13,6 +13,7 @@ Help us keep this list accurate and up-to-date! If you use or have designed a re
 |[Spdlog](https://github.com/gabime/spdlog)	| Fast C++ logging library (Linux, Windows, Android, macOS, etc.). |
 |[RTEMS Trace](https://docs.rtems.org/docs/main/user/tracing/introduction.html) | Logging for RTOS-based systems.|
 |[Google Perfetto](https://perfetto.dev/docs/instrumentation/tracing-sdk)|Open-source suite of SDKs, daemons and tools which use tracing to help developers understand the behaviour of the complex systems.|
+|[Tracy](https://github.com/wolfpld/tracy)|A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler.|
 |[Microsoft TraceX](https://learn.microsoft.com/en-us/azure/rtos/tracex/overview-tracex) | Windows-based system analysis tool for Microsoft Azure RTOS.|
 |[QP/Spy <br> Software Tracing](https://www.state-machine.com/qtools/qpspy.html) | Software trace and test system designed specifically for embedded systems.|
 |[TRICE](https://github.com/rokath/trice) | Open-source tool and library for efficient logging in real-time embedded systems.|
