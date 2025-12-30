@@ -1,17 +1,18 @@
 # A List of Solutions for Data Logging, Tracing, Testing, and Debugging
 
-Note that this list is not exhaustive. If you are aware of robust logging or testing solutions for real-time embedded systems, or if you notice a mistake in this list, please contribute information to this file.
+Help us keep this list accurate and up-to-date! If you use or have designed a real-time testing/logging tool we haven't mentioned, or if you notice an error, please let us know or submit a contribution.
 
 |||
 |:---|:----|
-| [RTEdbg toolkit](https://github.com/RTEdbg/RTEdbg) | A fast, flexible C/C++ logging toolkit for real-time embedded system testing and debugging. Optimized for minimal resource use (RAM, program memory, stack). Functions as a reentrant, timestamped `fprintf()` running on the host.|
-| [Segger SystemView](https://www.segger.com/products/development-tools/systemview/) |		Commercial tool tied to J-Link debug probes. <br> Data logging via J-Link and SEGGER RTT. Optimized for event logging. Event viewer software included. |
-| [Keil MDK Event <br> Recorder](https://www.keil.com/pack/doc/compiler/EventRecorder/html/index.html) |	Commercial tool optimized for event logging and less useful for general embedded system data logging. Includes support for MDK middleware, Keil RTX5. |
-| [Percepcio <br> Tracealyzer](https://percepio.com/tracealyzer/) |Commercial tool with powerful data analysis tools. Optimized for event logging. Less suited for real-time control system data logging and analysis.|
+| [Percepcio <br> Tracealyzer](https://percepio.com/tracealyzer/) |Commercial visual trace diagnostics tool that provides embedded software developers with deep insights into the runtime behavior, timing, and performance of RTOS and Linux-based systems.|
+| [Segger SystemView](https://www.segger.com/products/development-tools/systemview/) |Commercial real-time analysis tool that provides developers with cycle-accurate visibility into the runtime behavior, task scheduling, and interrupt execution of embedded systems. |
+| [RTEdbg toolkit](https://github.com/RTEdbg/RTEdbg) | Open-source, high-performance logging and tracing toolkit designed for real-time embedded systems, providing non-intrusive data acquisition and visualization with minimal impact on system timing. |
+| [Keil MDK Event <br> Recorder](https://www.keil.com/pack/doc/compiler/EventRecorder/html/index.html) |A low-latency debugging tool that provides real-time visibility into the runtime behavior and execution timing of Arm Cortex-M applications. |
 |[VxWorks System Viewer](https://learning.windriver.com/vxworks-7-system-viewer) | Commercial tool used to collect instances of pre-configured times tamped events and display them in graphical or tabular format.|
 |[Linux Trace Toolkit <br> LTT, LTTng](https://en.wikipedia.org/wiki/Linux_Trace_Toolkit) | Various tools designed to log program execution details from a patched Linux kernel and then perform various analyses on them. Several versions available:  [Dtrace](https://en.wikipedia.org/wiki/DTrace), [ftrace](https://en.wikipedia.org/wiki/Ftrace), [strace](https://en.wikipedia.org/wiki/Strace), etc.|
 |[Spdlog](https://github.com/gabime/spdlog)	| Fast C++ logging library (Linux, Windows, Android, macOS, etc.). |
 |[RTEMS Trace](https://docs.rtems.org/docs/main/user/tracing/introduction.html) | Logging for RTOS-based systems.|
+|[Google Perfetto](https://perfetto.dev/docs/instrumentation/tracing-sdk)|Open-source suite of SDKs, daemons and tools which use tracing to help developers understand the behaviour of the complex systems.|
 |[Microsoft TraceX](https://learn.microsoft.com/en-us/azure/rtos/tracex/overview-tracex) | Windows-based system analysis tool for Microsoft Azure RTOS.|
 |[QP/Spy <br> Software Tracing](https://www.state-machine.com/qtools/qpspy.html) | Software trace and test system designed specifically for embedded systems.|
 |[TRICE](https://github.com/rokath/trice) | Open-source tool and library for efficient logging in real-time embedded systems.|
@@ -19,8 +20,11 @@ Note that this list is not exhaustive. If you are aware of robust logging or tes
 |[μP7 library](https://baical.net/up7.html) | Lightweight C library for sending logs to the host.|
 |[NanoLog](https://github.com/PlatformLab/NanoLog)| Fast logging system for C++ with a simple printf-like API - see [article](https://www.usenix.org/system/files/conference/atc18/atc18-yang.pdf). |
 | [MCU Logging](https://docs.memfault.com/docs/mcu/logging) | The Memfault SDK offers a simple RAM based logging buffer. See also [Compact Logs](https://docs.memfault.com/docs/mcu/compact-logs). |
+| [Tonbandgerät](https://github.com/schilkp/Tonbandgeraet)  | A small embedded systems tracer with support for bare-metal and FreeRTOS-based targets. |
 |[MCUViewer](https://github.com/klonyyy/MCUViewer) | Open-source GUI debug tool for microcontrollers (Global variable and Trace Viewer).|
 |[ESP IDF](https://github.com/espressif/esp-idf/blob/v5.2.1/docs/en/api-guides/app_trace.rst) | ESP Application Level Tracing Library.|
+|[FreeRTOS BTF Trace](https://github.com/kuopinghsu/FreeRTOS-BTF-Trace)|Generate BTF trace file or VCD waveform for FreeRTOS.|
+|[trace recorder to CTF](https://github.com/jonlamb-gh/trace-recorder-to-ctf)|Convert FreeRTOS trace-recorder traces to LTTng-shaped CTF.|
 |[Dictionary-based <br> Logging](https://docs.zephyrproject.org/3.1.0/services/logging/index.html#dictionary-based-logging) | Zephyr Dictionary-based Logging.|
 |[elog](https://github.com/martinribelotta/elog) | Logging for embedded systems with mininmal resource utilization. |
 |[COVESA DLT](https://github.com/COVESA/dlt-daemon)	| Log and trace based on the protocol from the AUTOSAR Classic Platform.|
@@ -32,7 +36,7 @@ Note that this list is not exhaustive. If you are aware of robust logging or tes
 | [ulog](https://github.com/rdpoor/ulog) | Lightweight logging for embedded microcontrollers. |
 | [log.c](https://github.com/rxi/log.c) | A simple logging library implemented in C99. |
 | [pw_tokenizer](https://pigweed.dev/pw_tokenizer/) | Compress strings to shrink logs. |
-| [quill](https://github.com/odygrd/quill) | Asynchronous Low Latency C++ Logging Library |
+| [quill](https://github.com/odygrd/quill) | Asynchronous Low Latency C++ Logging Library. |
 | | |
 
 Logging tools differ significantly in their **flexibility**, **intrusiveness**, **reentrancy**, **resource usage**, suitability for **bare-metal** and/or **RTOS-based systems**, **cost**, and more. Many of these tools are primarily designed for event logging, making them less suitable for general embedded system data logging. Additionally, they are often only partially configurable.
@@ -42,3 +46,18 @@ Many `printf-like` logging solutions offload data decoding to a host system inst
 The list includes tools that are not full-fledged logging solutions but can assist with the implementation of logging or testing of embedded systems.
 
 **Use a solution that meets your requirements.** Some solutions are more optimal but require a bit more learning. This initial effort is often worthwhile, as the same solution can be applied to a large number of projects.
+
+### Other Embedded Systems Testing Resources
+
+The list contains links to various documents related to the testing of real-time embedded systems.
+1. [Improving Firmware Quality with Instrumentation - Part 1: Benefits and Limitations](https://www.embedded.com/improving-firmware-quality-with-instrumentation-part-1-benefits-and-limitations/)
+1. [Improving Firmware Quality with Instrumentation - Part 2: The RTEdbg Toolkit](https://www.embedded.com/improving-firmware-quality-with-instrumentation-part-2-the-rtedbg-toolkit/)
+1. [Stop Guessing - Trace Visualization for RTOS Firmware Debugging](https://www.carnica-technology.com/download/percepio/stop-guessing.pdf)
+1. [Added Heap Memory Monitoring and Tracking to FreeRTOS V10.5](https://mcuoneclipse.com/2023/04/15/added-heap-memory-tracking-to-freertos-v10-5-1-using-systemview/)
+1. [Avoiding Stack Overflows: Application Monitoring the Stack Usage](https://mcuoneclipse.com/2023/02/19/avoiding-stack-overflows-application-monitoring-the-stack-usage/)
+2. [Trace visualization of distributed and centralized applications](https://kth.diva-portal.org/smash/get/diva2:1800869/FULLTEXT01.pdf)
+2. [ Better Trace Format Specification - Link1](https://wiki.eclipse.org/images/e/e6/TA_BTF_Specification_2.1.3_Eclipse_Auto_IWG.pdf), [Link2](https://support.vector.com/kb?id=kb_article_view&sys_kb_id=cb1b434b4702865869f16240f26d4304)
+3. [A systems approach to embedded code fault detection @ embedded.com](https://www.embedded.com/a-systems-approach-to-embedded-code-fault-detection/)
+4. [Embedded Trace – The Hidden Gem Inside Your Processor](https://accemic.com/embedded-trace-the-hidden-gem-inside-your-processor/)
+5. [Logging Best Practices](https://betterstack.com/community/guides/logging/logging-best-practices/)
+5. [Effective Logging Practices for Easier Debugging](https://blog.pixelfreestudio.com/effective-logging-practices-for-easier-debugging/)
