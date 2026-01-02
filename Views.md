@@ -1,17 +1,17 @@
 # RTEdbg Data Export and Visualization Possibilities
 
-The **[RTEdbg](https://github.com/RTEdbg/RTEdbg)** library logs data into a circular buffer in binary format. The data is decoded on the host computer after being transferred from the embedded system. The RTEdbg toolkit is based on `fprintf()` functionality, which enables exporting data in various formats. Logged data can be exported (printed) into an arbitrary number of files using customizable formats (e.g., .txt, .log, .csv, etc.). These formats are compatible with various software tools used for reviewing and analyzing log data (from log viewers to graphing and spreadsheet software). Writing the most relevant data to separate files allows test protocols to be exported automatically, thus streamlining the creation of automated testing and documentation.
+The **[RTEdbg](https://github.com/RTEdbg/RTEdbg)** library logs data into a circular buffer in binary format. The data is decoded on the host computer after being transferred from the embedded system. The RTEdbg toolkit is based on `fprintf()` functionality, which enables exporting data in various formats. Logged data can be exported (printed) into an arbitrary number of files using customizable formats (e.g., .txt, .log, .csv, etc.). These formats are compatible with various software tools used for reviewing and analyzing log data (from log viewers to graphing and spreadsheet software). Writing the most relevant data to separate files allows test reports (protocols) to be exported automatically, thus streamlining the creation of automated testing and documentation.
 
-**Waveform Visualization:** Additionally, the toolkit supports simple and flexible exporting of log data to VCD (Value Change Dump) files. This allows the programmer to focus only on preparing the data using printf-like format definitions, rather than having to deal with the VCD file syntax. <br> See below for a visualization of data from a demo project, showing both the full and zoomed views.
+The toolkit features a simple and flexible way to export log data into VCD (Value Change Dump) files. This allows developers to focus entirely on data preparation using familiar **printf-like formatting**, eliminating the need to deal with complex VCD syntax. <br> See below for a visualization of data from the [FreeRTOS trace demo project](https://github.com/RTEdbg/FreeRTOS-trace-demo), showing both the full and zoomed views.
 
 ![VCD data - all](Img/vcd_all.png)
 ![VCD data - zom](Img/vcd_zoom.png)
 
-The same data can be exported to, for example, a CSV file and displayed using one of the graphing tools or spreadsheet software - see the example below:
+The same data can be exported to a CSV file and opened in spreadsheet software or graphing tools for more in-depth analysis. You can see an example of this below, using the same dataset as the previous example:
 
 ![VCD data - all](Img/csv_file.png)
 
-In complex projects, data **can be exported to any number of output files** for graphical, numerical, or textual analysis. Below are a few more excerpts from different log files.
+In complex projects, data **can be exported to any number of output files** for graphical, numerical, or textual analysis. Below are a few more excerpts from different output files.
 
 **Example:** Main Log File (all decoded data goes to this file by default)
 ```
@@ -28,7 +28,7 @@ N00114  390.857 MSG2_SINCOS_DEMO: -0.722788, -1.76581, 9.46875 us
 N00115  391.846 MSG1_LONG_TIMESTAMP: 0x5
 ```
 
-**Example:** RTOS Task Execution Times
+**Example:** RTOS Task Execution Times (derived from a file generated during FreeRTOS trace data decoding)
 ```
 MSG #  Time[ms] Task name Run time [ms]
 ---------------------------------------
@@ -55,7 +55,7 @@ N03272  817,184 QueueReceive from QueueSem1 failed, ticks to wait 0
 N03465  867,184 QueueSend to QueueTest failed
 ```
 
-**Example:** Below is an example of a core dump generated after an exception. Only 32 bytes of additional code and 20 bytes of stack space are required to execute the RTEdbg library function that writes the relevant data to the circular buffer. The complete decoding process is then performed on the host computer.
+**Example:** Below is an example of a [ARM Cortex-M4/M7 Core Dump](https://github.com/RTEdbg/RTEdbgDemo/blob/master/STM32L433/RTEdbg/Demo_code/Simple_Cortex_M4-M7_fault_handler.md) generated after a fatal exception. Only 32 bytes of additional code and 20 bytes of stack space are required to execute the RTEdbg library function that writes the relevant data to the circular buffer. The complete decoding process is then performed on the host computer.
 
 ```
 N05529 1203,292 MSGN_FATAL_EXCEPTION: 
@@ -75,4 +75,4 @@ CPU registers
         Valid fault address       
   Offending address:0x07000000
   ```
-  See also: [Exception Handler for devices with ARM Cortex-M4 or M7 core](https://github.com/RTEdbg/RTEdbgDemo/blob/master/STM32L433/RTEdbg/Demo_code/Simple_Cortex_M4-M7_fault_handler.md)
+  
