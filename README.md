@@ -117,6 +117,7 @@ Solutions such as the Tracealyzer or SystemView toolkits have their own powerful
 
 * [Improving Firmware Quality with Instrumentation - Part 1: Benefits and Limitations](https://www.embedded.com/improving-firmware-quality-with-instrumentation-part-1-benefits-and-limitations/) &rarr; *embedded.com*
 * [Improving Firmware Quality with Instrumentation - Part 2: The RTEdbg Toolkit](https://www.embedded.com/improving-firmware-quality-with-instrumentation-part-2-the-rtedbg-toolkit/) &rarr; *embedded.com*
+* [RTEdbg: Open-Source Data Logging and Tracing for Embedded Systems](https://www.beningo.com/rtedbg-open-source-data-logging-and-tracing-for-embedded-systems/) &rarr; *beningo.com*
 
 <br>
 
@@ -127,7 +128,7 @@ The code and documentation for the libraries and tools can be found in the follo
 |:---:|:-----------|
 | [**RTEdbg**](https://github.com/RTEdbg/RTEdbg) | Main repository used to distribute the RTEdbg toolkit - see the **[Releases - download page](https://github.com/RTEdbg/RTEdbg/releases)**. This repository does not contain any source code. See other repositories below for library and tool source code. |
 | [**RTElib**](https://github.com/RTEdbg/RTElib) | A re-entrant library of functions for minimally intrusive code instrumentation (data logging and tracing). Functions collect data in a circular buffer in RAM.  | 
-| [**RTOS trace macros**](https://github.com/RTEdbg/RTOS_trace) | RTOS trace macros and documentation. |
+| [**RTOS trace macros**](https://github.com/RTEdbg/RTOS_trace) | Lightweight RTOS trace macros for the instrumentation of popular operating systems. They enable system-level instrumentation, allowing developers to record and visualize the internal behavior of a Real-Time Operating System in real-time. |
 | [**RTEgetData**](https://github.com/RTEdbg/RTEgetData) | A tool for transferring binary log data to a host using a COM port or a GDB server. This utility replaces RTEgdbData. Other ways to transfer data to the host are described in the RTEdbg manual.|
 | [**RTEmsg**](https://github.com/RTEdbg/RTEmsg) | Offline binary data decoding application that runs on the host. |
 | [**RTEcomLib**](https://github.com/RTEdbg/RTEcomLib) | Functions for log data transfer to host via serial channel. |

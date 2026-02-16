@@ -38,9 +38,17 @@ Help us keep this list accurate and up-to-date! If you use or have designed a re
 | [log.c](https://github.com/rxi/log.c) | A simple logging library implemented in C99. |
 | [pw_tokenizer](https://pigweed.dev/pw_tokenizer/) | Compress strings to shrink logs. |
 | [quill](https://github.com/odygrd/quill) | Asynchronous Low Latency C++ Logging Library. |
+| [plog](https://github.com/SergiusTheBest/plog) | Portable, simple and extensible C++ logging library. |
+| [palanteer](https://github.com/dfeneyrou/palanteer) | Visual Python and C++ nanosecond profiler, logger, tests enabler. |
+| [tinylog](https://github.com/pymumu/tinylog) | A lightweight C, C++ logging library developed for Linux. |
+| [zf_log](https://github.com/wonder-mice/zf_log) | Core logging library for C/ObjC/C++. |
+| [microlog](https://github.com/an-dr/microlog) | A lightweight, universal logging library in C. |
+| [slog](https://github.com/kala13x/slog) | A lightweight, universal logging library in C. |
+| [zlog](https://github.com/zma/zlog) |  low-latency in-memory C logging library. |
+| [lwlog](https://github.com/Akagi201/lwlog) | A lightweight header only logging library for C. |
 | | |
 
-Logging tools differ significantly in their **flexibility**, **intrusiveness**, **reentrancy**, **resource usage**, suitability for **bare-metal** and/or **RTOS-based systems**, **cost**, and more. Many of these tools are primarily designed for event logging, making them less suitable for general embedded system data logging. Additionally, they are often only partially configurable.
+Logging tools and libraries differ significantly in their **flexibility**, **intrusiveness**, **reentrancy**, **resource usage**, suitability for **bare-metal** and/or **RTOS-based systems**, **cost**, and more. Many of these tools are primarily designed for event logging, making them less suitable for general embedded system data logging. Additionally, they are often only partially configurable.
 
 Many `printf-like` logging solutions offload data decoding to a host system instead of performing it directly on the embedded device. This approach often requires transferring the printf-like strings to the host, which increases the demand on the data-logging buffer and can slow down the logging process. Additionally, many logging functions are not reentrant or they require a significant amount of stack space. Some solutions also use inefficient data encoding, which further contributes to the need for larger data-logging buffers.
 
