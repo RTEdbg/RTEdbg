@@ -46,15 +46,17 @@ Help us keep this list accurate and up-to-date! If you use or have designed a re
 | [slog](https://github.com/kala13x/slog) | A lightweight, universal logging library in C. |
 | [zlog](https://github.com/zma/zlog) |  low-latency in-memory C logging library. |
 | [lwlog](https://github.com/Akagi201/lwlog) | A lightweight header only logging library for C. |
+| [Scrutiny Debugger](https://scrutinydebugger.com/) | Debugging, visualization and testing tool for C/C++ embedded applications that works through instrumentation. |
 | | |
 
 Logging tools and libraries differ significantly in their **flexibility**, **intrusiveness**, **reentrancy**, **resource usage**, suitability for **bare-metal** and/or **RTOS-based systems**, **cost**, and more. Many of these tools are primarily designed for event logging, making them less suitable for general embedded system data logging. Additionally, they are often only partially configurable.
 
-Many `printf-like` logging solutions offload data decoding to a host system instead of performing it directly on the embedded device. This approach often requires transferring the printf-like strings to the host, which increases the demand on the data-logging buffer and can slow down the logging process. Additionally, many logging functions are not reentrant or they require a significant amount of stack space. Some solutions also use inefficient data encoding, which further contributes to the need for larger data-logging buffers.
+Many `printf-like` logging solutions offload data decoding (formating) to a host system instead of performing it directly on the embedded device. This approach often requires transferring the printf-like strings to the host, which increases the demand on the data-logging buffer and can slow down the logging process. Additionally, many logging functions are not reentrant or they require a significant amount of stack space. Some solutions also use inefficient data encoding, which further contributes to the need for larger data-logging buffers.
 
 The list includes tools that are not full-fledged logging solutions but can assist with the implementation of logging or testing of embedded systems.
 
-**Use a solution that meets your requirements.** Some solutions are more optimal but require a bit more learning. This initial effort is often worthwhile, as the same solution can be applied to a large number of projects.
+While it is tempting to choose the simplest tool for a current task, the simplest option isn't always the most efficient long-term strategy. Tool selection is a constant trade-off between immediate ease and future scalability. If a future project outgrows that selected tool, you are forced to start the learning process over again.
+Deep tool proficiency allows you to complete both simple and complex tasks faster. A small initial effort often eliminates the need for repeated pivots later on.
 
 ### Other Embedded Systems Testing Resources
 
@@ -70,3 +72,4 @@ The list contains links to various documents related to the testing of real-time
 4. [Embedded Trace – The Hidden Gem Inside Your Processor](https://accemic.com/embedded-trace-the-hidden-gem-inside-your-processor/)
 5. [Logging Best Practices](https://betterstack.com/community/guides/logging/logging-best-practices/)
 5. [Effective Logging Practices for Easier Debugging](https://blog.pixelfreestudio.com/effective-logging-practices-for-easier-debugging/)
+5. [Profiling and Tracing Tools Across System Layers and Architectures](https://eunomia.dev/zh/blog/2025/08/20/profiling-and-tracing-tools-across-system-layers-and-architectures/#os-level-tracing-and-kernel-profiling-tools)

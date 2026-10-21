@@ -14,8 +14,9 @@ get started quickly, this document briefly describes only the GTKWave functions 
 === GTKWave Installation
 
 The RTEdbg tools are currently only available for Windows. For a quick
-start get the ready to use Windows version:
-https://altushost-swe.dl.sourceforge.net/project/gtkwave/gtkwave-3.3.100-bin-win32/gtkwave-3.3.100-bin-win32.zip?viasf=1[gtkwave-3.3.100-bin-win32.zip].
+start get the ready to use 32-bit or 64-bit version:
+Win32 https://altushost-swe.dl.sourceforge.net/project/gtkwave/gtkwave-3.3.100-bin-win32/gtkwave-3.3.100-bin-win32.zip?viasf=1[gtkwave-3.3.100-bin-win32.zip]
+Win64 https://altushost-swe.dl.sourceforge.net/project/gtkwave/gtkwave-3.3.100-bin-win32/gtkwave-3.3.100-bin-win32.zip?viasf=1[gtkwave-3.3.100-bin-win64.zip]
 Copy the *gtkwave* folder contained in the zip file to your computer - 
 e.g. to `c:\gtkwave` or `c:\RTEdbg\UTIL\gtkwave`.
 
@@ -62,7 +63,8 @@ spreadsheet software.
 
 . Signal waveforms marked with red color or "UNDEF" indicate that there
 is no corresponding value in the VCD file for that part of the graph for
-an individual signal.
+an individual signal. *Note:* In some GTKWave versions, QNAN is shown 
+instead of UNDEF for uninitialized values at the start of the VCD file.
 . In the signals window, it is possible to insert a blank line or
 comment for clarity (right mouse click + "Insert Blank" or "Insert
 Comment").
