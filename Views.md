@@ -99,7 +99,7 @@ CPU registers
   R08:0x00EAC4E1, R09:0x080027B4, R10:0xFA481A48, R11:0x00000064
   R12:0x00000000,  SP:0x2001FF28,  LR:0x03000000,  PC:0x08000938
   xPSR:0x21000000, Flags: Q=0, V=0, C=1, Z=0, N=0
-     Interrupted exception: #0 - Thread mode (vector table address: 0x00)
+     Interrupted exception: #0 - (none) Thread mode (vector table address: 0x00)
   ICSR: 0x00000803
      Active exception: #3 - HardFault (vector table address: 0x0C)
      Pending exception: #0 - Thread mode (vector table address: 0x00)     
